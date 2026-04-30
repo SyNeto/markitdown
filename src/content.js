@@ -82,6 +82,16 @@
     return window.marked.parse(text);
   }
 
+  function highlightCodeBlocks(root) {
+    // hljs is loaded globally by the manifest's content_scripts entry.
+    // We call highlightElement on each code block for syntax highlighting
+    // with auto-detection when no language class is specified.
+    if (!window.hljs) return;
+    root.querySelectorAll("pre code").forEach((block) => {
+      window.hljs.highlightElement(block);
+    });
+  }
+
   function applyRenderedView(html) {
     // Replace the entire body content with the rendered Markdown.
     // We use innerHTML here because marked.parse() returns an HTML string
@@ -95,6 +105,7 @@
     container.className = "markitdown-body";
     container.innerHTML = html;
 
+    highlightCodeBlocks(container);
     document.body.appendChild(container);
     isRendered = true;
   }

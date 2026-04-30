@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MarkItDown",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Renders Markdown files in the browser with GitHub-style themes and GFM support.",
 
   "icons": {
@@ -27,10 +27,12 @@
       ],
       "js": [
         "vendor/marked.min.js",
+        "vendor/hljs.min.js",
         "src/content.js"
       ],
       "css": [
-        "styles/markdown.css"
+        "styles/markdown.css",
+        "styles/hljs-theme.css"
       ],
       "run_at": "document_idle"
     }

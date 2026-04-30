@@ -1,0 +1,196 @@
+/*
+ * MarkItDown — highlight.js GitHub themes (light + dark)
+ * Based on highlight.js GitHub themes by @Hirse.
+ * Combined into a single file using prefers-color-scheme.
+ *
+ * We skip the base `pre code.hljs` and `code.hljs` rules because
+ * our markdown.css already handles code block padding and display.
+ */
+
+/* ========== Light theme (default) ========== */
+
+.markitdown-body .hljs {
+  color: #24292e;
+}
+
+.markitdown-body .hljs-doctag,
+.markitdown-body .hljs-keyword,
+.markitdown-body .hljs-meta .hljs-keyword,
+.markitdown-body .hljs-template-tag,
+.markitdown-body .hljs-template-variable,
+.markitdown-body .hljs-type,
+.markitdown-body .hljs-variable.language_ {
+  color: #d73a49;
+}
+
+.markitdown-body .hljs-title,
+.markitdown-body .hljs-title.class_,
+.markitdown-body .hljs-title.class_.inherited__,
+.markitdown-body .hljs-title.function_ {
+  color: #6f42c1;
+}
+
+.markitdown-body .hljs-attr,
+.markitdown-body .hljs-attribute,
+.markitdown-body .hljs-literal,
+.markitdown-body .hljs-meta,
+.markitdown-body .hljs-number,
+.markitdown-body .hljs-operator,
+.markitdown-body .hljs-variable,
+.markitdown-body .hljs-selector-attr,
+.markitdown-body .hljs-selector-class,
+.markitdown-body .hljs-selector-id {
+  color: #005cc5;
+}
+
+.markitdown-body .hljs-regexp,
+.markitdown-body .hljs-string,
+.markitdown-body .hljs-meta .hljs-string {
+  color: #032f62;
+}
+
+.markitdown-body .hljs-built_in,
+.markitdown-body .hljs-symbol {
+  color: #e36209;
+}
+
+.markitdown-body .hljs-comment,
+.markitdown-body .hljs-code,
+.markitdown-body .hljs-formula {
+  color: #6a737d;
+}
+
+.markitdown-body .hljs-name,
+.markitdown-body .hljs-quote,
+.markitdown-body .hljs-selector-tag,
+.markitdown-body .hljs-selector-pseudo {
+  color: #22863a;
+}
+
+.markitdown-body .hljs-subst {
+  color: #24292e;
+}
+
+.markitdown-body .hljs-section {
+  color: #005cc5;
+  font-weight: bold;
+}
+
+.markitdown-body .hljs-bullet {
+  color: #735c0f;
+}
+
+.markitdown-body .hljs-emphasis {
+  color: #24292e;
+  font-style: italic;
+}
+
+.markitdown-body .hljs-strong {
+  color: #24292e;
+  font-weight: bold;
+}
+
+.markitdown-body .hljs-addition {
+  color: #22863a;
+  background-color: #f0fff4;
+}
+
+.markitdown-body .hljs-deletion {
+  color: #b31d28;
+  background-color: #ffeef0;
+}
+
+/* ========== Dark theme ========== */
+
+@media (prefers-color-scheme: dark) {
+  .markitdown-body .hljs {
+    color: #c9d1d9;
+  }
+
+  .markitdown-body .hljs-doctag,
+  .markitdown-body .hljs-keyword,
+  .markitdown-body .hljs-meta .hljs-keyword,
+  .markitdown-body .hljs-template-tag,
+  .markitdown-body .hljs-template-variable,
+  .markitdown-body .hljs-type,
+  .markitdown-body .hljs-variable.language_ {
+    color: #ff7b72;
+  }
+
+  .markitdown-body .hljs-title,
+  .markitdown-body .hljs-title.class_,
+  .markitdown-body .hljs-title.class_.inherited__,
+  .markitdown-body .hljs-title.function_ {
+    color: #d2a8ff;
+  }
+
+  .markitdown-body .hljs-attr,
+  .markitdown-body .hljs-attribute,
+  .markitdown-body .hljs-literal,
+  .markitdown-body .hljs-meta,
+  .markitdown-body .hljs-number,
+  .markitdown-body .hljs-operator,
+  .markitdown-body .hljs-variable,
+  .markitdown-body .hljs-selector-attr,
+  .markitdown-body .hljs-selector-class,
+  .markitdown-body .hljs-selector-id {
+    color: #79c0ff;
+  }
+
+  .markitdown-body .hljs-regexp,
+  .markitdown-body .hljs-string,
+  .markitdown-body .hljs-meta .hljs-string {
+    color: #a5d6ff;
+  }
+
+  .markitdown-body .hljs-built_in,
+  .markitdown-body .hljs-symbol {
+    color: #ffa657;
+  }
+
+  .markitdown-body .hljs-comment,
+  .markitdown-body .hljs-code,
+  .markitdown-body .hljs-formula {
+    color: #8b949e;
+  }
+
+  .markitdown-body .hljs-name,
+  .markitdown-body .hljs-quote,
+  .markitdown-body .hljs-selector-tag,
+  .markitdown-body .hljs-selector-pseudo {
+    color: #7ee787;
+  }
+
+  .markitdown-body .hljs-subst {
+    color: #c9d1d9;
+  }
+
+  .markitdown-body .hljs-section {
+    color: #1f6feb;
+    font-weight: bold;
+  }
+
+  .markitdown-body .hljs-bullet {
+    color: #f2cc60;
+  }
+
+  .markitdown-body .hljs-emphasis {
+    color: #c9d1d9;
+    font-style: italic;
+  }
+
+  .markitdown-body .hljs-strong {
+    color: #c9d1d9;
+    font-weight: bold;
+  }
+
+  .markitdown-body .hljs-addition {
+    color: #aff5b4;
+    background-color: #033a16;
+  }
+
+  .markitdown-body .hljs-deletion {
+    color: #ffdcd7;
+    background-color: #67060c;
+  }
+}

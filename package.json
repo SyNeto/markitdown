@@ -1,9 +1,11 @@
 {
   "name": "markitdown",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Brave/Chrome extension to render Markdown files",
   "scripts": {
-    "build:vendor": "esbuild vendor/marked-entry.js --bundle --minify --format=iife --outfile=vendor/marked.min.js",
+    "build:marked": "esbuild vendor/marked-entry.js --bundle --minify --format=iife --outfile=vendor/marked.min.js",
+    "build:hljs": "esbuild vendor/hljs-entry.js --bundle --minify --format=iife --outfile=vendor/hljs.min.js",
+    "build:vendor": "npm run build:marked && npm run build:hljs",
     "build": "npm run build:vendor"
   },
   "keywords": [],
@@ -12,6 +14,7 @@
   "type": "commonjs",
   "devDependencies": {
     "esbuild": "^0.28.0",
+    "highlight.js": "^11.11.1",
     "marked": "^18.0.2"
   }
 }
