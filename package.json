@@ -6,7 +6,9 @@
     "build:marked": "esbuild vendor/marked-entry.js --bundle --minify --format=iife --outfile=vendor/marked.min.js",
     "build:hljs": "esbuild vendor/hljs-entry.js --bundle --minify --format=iife --outfile=vendor/hljs.min.js",
     "build:vendor": "npm run build:marked && npm run build:hljs",
-    "build": "npm run build:vendor"
+    "build": "npm run build:vendor",
+    "clean": "rm -f markitdown-*.zip vendor/marked.min.js vendor/hljs.min.js",
+    "package": "npm run clean && npm run build && zip -r markitdown-$npm_package_version.zip manifest.json icons src/background.js src/content.js styles/markdown.css styles/hljs-theme.css vendor/marked.min.js vendor/hljs.min.js"
   },
   "keywords": [],
   "author": "",
