@@ -1,0 +1,300 @@
+/*
+ * MarkItDown — GitHub-style Markdown CSS
+ * Supports light/dark modes via prefers-color-scheme.
+ * Applied automatically via manifest content_scripts.
+ */
+
+/* --- CSS Variables: Light theme (default) --- */
+
+:root {
+  --md-bg: #ffffff;
+  --md-text: #1f2328;
+  --md-text-secondary: #656d76;
+  --md-link: #0969da;
+  --md-border: #d0d7de;
+  --md-border-heavy: #d0d7de;
+  --md-code-bg: #f6f8fa;
+  --md-code-text: #1f2328;
+  --md-blockquote-border: #d0d7de;
+  --md-blockquote-text: #656d76;
+  --md-table-border: #d0d7de;
+  --md-table-row-alt: #f6f8fa;
+  --md-hr: #d8dee4;
+  --md-heading-border: #d8dee4;
+  --md-kbd-bg: #f6f8fa;
+  --md-kbd-border: #d0d7de;
+  --md-kbd-shadow: #afb8c1;
+  --md-checkbox-checked: #0969da;
+}
+
+/* --- CSS Variables: Dark theme --- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --md-bg: #0d1117;
+    --md-text: #e6edf3;
+    --md-text-secondary: #8b949e;
+    --md-link: #58a6ff;
+    --md-border: #30363d;
+    --md-border-heavy: #6e7681;
+    --md-code-bg: #161b22;
+    --md-code-text: #e6edf3;
+    --md-blockquote-border: #30363d;
+    --md-blockquote-text: #8b949e;
+    --md-table-border: #30363d;
+    --md-table-row-alt: #161b22;
+    --md-hr: #21262d;
+    --md-heading-border: #21262d;
+    --md-kbd-bg: #161b22;
+    --md-kbd-border: #30363d;
+    --md-kbd-shadow: #1b1f23;
+    --md-checkbox-checked: #58a6ff;
+  }
+}
+
+/* --- Page-level reset when rendered --- */
+
+body:has(#markitdown-content) {
+  background-color: var(--md-bg);
+  color: var(--md-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Article container --- */
+
+.markitdown-body {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 28px;
+  box-sizing: border-box;
+}
+
+/* --- Headings --- */
+
+.markitdown-body h1,
+.markitdown-body h2,
+.markitdown-body h3,
+.markitdown-body h4,
+.markitdown-body h5,
+.markitdown-body h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markitdown-body h1 {
+  font-size: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--md-heading-border);
+}
+
+.markitdown-body h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--md-heading-border);
+}
+
+.markitdown-body h3 { font-size: 1.25em; }
+.markitdown-body h4 { font-size: 1em; }
+.markitdown-body h5 { font-size: 0.875em; }
+.markitdown-body h6 { font-size: 0.85em; color: var(--md-text-secondary); }
+
+/* --- Paragraphs & text --- */
+
+.markitdown-body p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markitdown-body a {
+  color: var(--md-link);
+  text-decoration: none;
+}
+
+.markitdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markitdown-body strong {
+  font-weight: 600;
+}
+
+.markitdown-body del {
+  text-decoration: line-through;
+}
+
+/* --- Lists --- */
+
+.markitdown-body ul,
+.markitdown-body ol {
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-left: 2em;
+}
+
+.markitdown-body li {
+  margin-top: 0.25em;
+}
+
+.markitdown-body li + li {
+  margin-top: 0.25em;
+}
+
+/* Nested lists */
+.markitdown-body ul ul,
+.markitdown-body ul ol,
+.markitdown-body ol ol,
+.markitdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* --- Task lists (GFM) --- */
+
+.markitdown-body ul:has(> li > input[type="checkbox"]) {
+  list-style: none;
+  padding-left: 1.5em;
+}
+
+.markitdown-body li > input[type="checkbox"] {
+  margin-right: 0.5em;
+  vertical-align: middle;
+  accent-color: var(--md-checkbox-checked);
+}
+
+/* --- Blockquotes --- */
+
+.markitdown-body blockquote {
+  margin: 0 0 16px 0;
+  padding: 0 1em;
+  color: var(--md-blockquote-text);
+  border-left: 0.25em solid var(--md-blockquote-border);
+}
+
+.markitdown-body blockquote > :first-child {
+  margin-top: 0;
+}
+
+.markitdown-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* --- Code --- */
+
+.markitdown-body code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 85%;
+  background-color: var(--md-code-bg);
+  color: var(--md-code-text);
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+
+.markitdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: var(--md-code-bg);
+  border-radius: 6px;
+}
+
+.markitdown-body pre code {
+  display: block;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+}
+
+/* --- Tables (GFM) --- */
+
+.markitdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 0;
+  margin-bottom: 16px;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.markitdown-body table th,
+.markitdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid var(--md-table-border);
+}
+
+.markitdown-body table th {
+  font-weight: 600;
+}
+
+.markitdown-body table tr {
+  background-color: var(--md-bg);
+  border-top: 1px solid var(--md-border);
+}
+
+.markitdown-body table tr:nth-child(2n) {
+  background-color: var(--md-table-row-alt);
+}
+
+/* --- Horizontal rules --- */
+
+.markitdown-body hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: var(--md-hr);
+  border: 0;
+}
+
+/* --- Images --- */
+
+.markitdown-body img {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  border-style: none;
+}
+
+/* --- Keyboard shortcuts --- */
+
+.markitdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  line-height: 10px;
+  color: var(--md-text);
+  vertical-align: middle;
+  background-color: var(--md-kbd-bg);
+  border: solid 1px var(--md-kbd-border);
+  border-bottom-color: var(--md-kbd-shadow);
+  border-radius: 6px;
+  box-shadow: inset 0 -1px 0 var(--md-kbd-shadow);
+}
+
+/* --- First/last child margin cleanup --- */
+
+.markitdown-body > *:first-child {
+  margin-top: 0 !important;
+}
+
+.markitdown-body > *:last-child {
+  margin-bottom: 0 !important;
+}
