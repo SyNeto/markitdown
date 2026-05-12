@@ -15,7 +15,7 @@
   },
 
   "background": {
-    "scripts": ["src/background.js"]
+    "scripts": ["background.js"]
   },
 
   "content_scripts": [
@@ -26,9 +26,7 @@
         "*://gist.githubusercontent.com/*"
       ],
       "js": [
-        "vendor/marked.min.js",
-        "vendor/hljs.min.js",
-        "src/content.js"
+        "content.bundle.js"
       ],
       "css": [
         "styles/markdown.css",
