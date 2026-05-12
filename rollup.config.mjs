@@ -5,8 +5,8 @@ import commonjs from "@rollup/plugin-commonjs";
 const browser = process.env.BROWSER ?? "all";
 
 const targets = {
-  chromium: "chrome116",
-  firefox: "firefox115",
+  chromium: "chrome120",
+  firefox: "firefox128",
 };
 
 function buildFor(name) {
@@ -16,7 +16,7 @@ function buildFor(name) {
   return [
     {
       input: "src/content.ts",
-      output: { file: `dist/${name}/content.bundle.js`, format: "iife" },
+      output: { file: `dist/${name}/content.bundle.js`, format: "iife", inlineDynamicImports: true },
       plugins,
     },
     {

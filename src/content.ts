@@ -1,5 +1,6 @@
 import { marked } from "marked";
 import hljs from "./hljs-languages";
+import { renderMermaidBlocks } from "./mermaid-renderer";
 
 const MARKDOWN_EXTENSIONS = /\.(md|markdown|mdown|mkd)(\?.*)?$/i;
 const MARKDOWN_CONTENT_TYPES = ["text/markdown", "text/x-markdown"];
@@ -55,7 +56,8 @@ function renderMarkdown(text: string): string {
 }
 
 function highlightCodeBlocks(root: HTMLElement): void {
-  root.querySelectorAll("pre code").forEach((block) => {
+  // Skip mermaid blocks — those are handled by mermaid-renderer.
+  root.querySelectorAll("pre code:not(.language-mermaid)").forEach((block) => {
     hljs.highlightElement(block as HTMLElement);
   });
 }
@@ -73,6 +75,10 @@ function applyRenderedView(html: string): void {
   highlightCodeBlocks(container);
   document.body.appendChild(container);
   isRendered = true;
+
+  if (container.querySelector("pre code.language-mermaid")) {
+    renderMermaidBlocks(container);
+  }
 }
 
 function applyRawView(text: string): void {
