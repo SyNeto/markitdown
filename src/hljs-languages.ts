@@ -1,17 +1,11 @@
-// Entry point for esbuild: builds a highlight.js bundle with common languages.
-// We register languages explicitly instead of importing the full package
-// to keep the bundle small (~180kb vs ~1MB).
-
 import hljs from "highlight.js/lib/core";
 
-// Web fundamentals
 import javascript from "highlight.js/lib/languages/javascript";
 import typescript from "highlight.js/lib/languages/typescript";
-import xml from "highlight.js/lib/languages/xml"; // also covers HTML
+import xml from "highlight.js/lib/languages/xml";
 import css from "highlight.js/lib/languages/css";
 import json from "highlight.js/lib/languages/json";
 
-// Backend / systems
 import python from "highlight.js/lib/languages/python";
 import java from "highlight.js/lib/languages/java";
 import csharp from "highlight.js/lib/languages/csharp";
@@ -24,23 +18,19 @@ import ruby from "highlight.js/lib/languages/ruby";
 import swift from "highlight.js/lib/languages/swift";
 import kotlin from "highlight.js/lib/languages/kotlin";
 
-// Scripting / config
 import bash from "highlight.js/lib/languages/bash";
 import shell from "highlight.js/lib/languages/shell";
 import powershell from "highlight.js/lib/languages/powershell";
 import yaml from "highlight.js/lib/languages/yaml";
-import ini from "highlight.js/lib/languages/ini"; // also covers TOML
+import ini from "highlight.js/lib/languages/ini";
 import dockerfile from "highlight.js/lib/languages/dockerfile";
 
-// Data / query
 import sql from "highlight.js/lib/languages/sql";
 import graphql from "highlight.js/lib/languages/graphql";
 
-// Markup / docs
 import markdown from "highlight.js/lib/languages/markdown";
 import latex from "highlight.js/lib/languages/latex";
 
-// Other common
 import diff from "highlight.js/lib/languages/diff";
 import makefile from "highlight.js/lib/languages/makefile";
 import nginx from "highlight.js/lib/languages/nginx";
@@ -111,4 +101,4 @@ hljs.registerLanguage("perl", perl);
 hljs.registerLanguage("pl", perl);
 hljs.registerLanguage("scala", scala);
 
-window.hljs = hljs;
+export default hljs;

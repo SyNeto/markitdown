@@ -1,22 +1,32 @@
 {
   "name": "markitdown",
-  "version": "1.1.0",
-  "description": "Brave/Chrome extension to render Markdown files",
+  "version": "2.0.0",
+  "description": "Browser extension to render Markdown files — TypeScript source, Rollup bundle, Chromium and Firefox builds",
   "scripts": {
-    "build:marked": "esbuild vendor/marked-entry.js --bundle --minify --format=iife --outfile=vendor/marked.min.js",
-    "build:hljs": "esbuild vendor/hljs-entry.js --bundle --minify --format=iife --outfile=vendor/hljs.min.js",
-    "build:vendor": "npm run build:marked && npm run build:hljs",
-    "build": "npm run build:vendor",
-    "clean": "rm -f markitdown-*.zip vendor/marked.min.js vendor/hljs.min.js",
-    "package": "npm run clean && npm run build && zip -r markitdown-$npm_package_version.zip manifest.json icons src/background.js src/content.js styles/markdown.css styles/hljs-theme.css vendor/marked.min.js vendor/hljs.min.js"
+    "typecheck": "tsc --noEmit",
+    "build:chromium": "BROWSER=chromium rollup -c && cp -r icons styles dist/chromium/ && cp build/manifest.chromium.json dist/chromium/manifest.json",
+    "build:firefox": "BROWSER=firefox rollup -c && cp -r icons styles dist/firefox/ && cp build/manifest.firefox.json dist/firefox/manifest.json",
+    "build:all": "rollup -c && cp -r icons styles dist/chromium/ && cp build/manifest.chromium.json dist/chromium/manifest.json && cp -r icons styles dist/firefox/ && cp build/manifest.firefox.json dist/firefox/manifest.json",
+    "build": "npm run build:all",
+    "clean": "rm -rf dist markitdown-*.zip",
+    "package:chromium": "npm run build:chromium && cd dist/chromium && zip -r ../../markitdown-$npm_package_version-chromium.zip .",
+    "package:firefox": "npm run build:firefox && cd dist/firefox && zip -r ../../markitdown-$npm_package_version-firefox.zip .",
+    "package:all": "npm run clean && npm run package:chromium && npm run package:firefox",
+    "package": "npm run package:all"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@types/chrome": "^0.1.42",
     "esbuild": "^0.28.0",
     "highlight.js": "^11.11.1",
-    "marked": "^18.0.2"
+    "marked": "^18.0.2",
+    "rollup": "^4.60.3",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "typescript": "^6.0.3"
   }
 }
