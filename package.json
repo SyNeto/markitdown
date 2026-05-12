@@ -1,6 +1,6 @@
 {
   "name": "markitdown",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Browser extension to render Markdown files — TypeScript source, Rollup bundle, Chromium and Firefox builds",
   "scripts": {
     "typecheck": "tsc --noEmit",
