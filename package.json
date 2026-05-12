@@ -1,22 +1,31 @@
 {
   "name": "markitdown",
   "version": "1.1.0",
-  "description": "Brave/Chrome extension to render Markdown files",
+  "description": "Browser extension to render Markdown files (Chromium-like and Firefox builds)",
   "scripts": {
     "build:marked": "esbuild vendor/marked-entry.js --bundle --minify --format=iife --outfile=vendor/marked.min.js",
     "build:hljs": "esbuild vendor/hljs-entry.js --bundle --minify --format=iife --outfile=vendor/hljs.min.js",
     "build:vendor": "npm run build:marked && npm run build:hljs",
-    "build": "npm run build:vendor",
-    "clean": "rm -f markitdown-*.zip vendor/marked.min.js vendor/hljs.min.js",
-    "package": "npm run clean && npm run build && zip -r markitdown-$npm_package_version.zip manifest.json icons src/background.js src/content.js styles/markdown.css styles/hljs-theme.css vendor/marked.min.js vendor/hljs.min.js"
+    "typecheck": "tsc --noEmit",
+    "build:chromium":"npm run build:vendor && mkdir -p dist/chromium/vendor && cp -r icons src styles dist/chromium/ && cp vendor/marked.min.js vendor/hljs.min.js dist/chromium/vendor/ && cp build/manifest.chromium.json dist/chromium/manifest.json",
+    "build:firefox": "npm run build:vendor && mkdir -p dist/firefox/vendor && cp -r icons src styles dist/firefox/ && cp vendor/marked.min.js vendor/hljs.min.js dist/firefox/vendor/ && cp build/manifest.firefox.json dist/firefox/manifest.json",
+    "build:all": "npm run build:chromium && npm run build:firefox",
+    "build": "npm run build:all",
+    "clean": "rm -rf dist markitdown-*.zip vendor/marked.min.js vendor/hljs.min.js",
+    "package:chromium": "npm run build:chromium && cd dist/chromium && zip -r ../../markitdown-$npm_package_version-chromium.zip .",
+    "package:firefox": "npm run build:firefox && cd dist/firefox && zip -r ../../markitdown-$npm_package_version-firefox.zip .",
+    "package:all": "npm run clean && npm run package:chromium && npm run package:firefox",
+    "package": "npm run package:all"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@types/chrome": "^0.1.42",
     "esbuild": "^0.28.0",
     "highlight.js": "^11.11.1",
-    "marked": "^18.0.2"
+    "marked": "^18.0.2",
+    "typescript": "^6.0.3"
   }
 }
