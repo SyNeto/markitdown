@@ -1,7 +1,7 @@
 {
   "name": "markitdown",
-  "version": "1.1.0",
-  "description": "Browser extension to render Markdown files (Chromium-like and Firefox builds)",
+  "version": "2.0.0",
+  "description": "Browser extension to render Markdown files — TypeScript source, Rollup bundle, Chromium and Firefox builds",
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build:chromium": "BROWSER=chromium rollup -c && cp -r icons styles dist/chromium/ && cp build/manifest.chromium.json dist/chromium/manifest.json",
